@@ -12,7 +12,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleUrlChange = (event) => {
+  const handleUrlChange = (event: any) => {
     setUrl(event.target.value);
   };
 
