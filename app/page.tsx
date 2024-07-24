@@ -23,7 +23,7 @@ export default function Home() {
     try {
       const result = await fetchData(url);
       setData(result);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
