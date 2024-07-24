@@ -1,6 +1,3 @@
-/* eslint-disable */
-/* @ts-nocheck */
-
 'use client'
 
 import { useState } from 'react';
@@ -8,11 +5,11 @@ import { fetchData } from './actions/fetchData';
 
 export default function Home() {
   const [url, setUrl] = useState('https://api.example.com/data');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleUrlChange = (event: any) => {
+  const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(event.target.value);
   };
 
@@ -22,9 +19,15 @@ export default function Home() {
     setData(null);
     try {
       const result = await fetchData(url);
-      setData(result);
-    } catch (err: any) {
-      setError(err.message);
+      // Convert Map to a plain object
+      const resultObject = Object.fromEntries(result);
+      setData(resultObject);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unknown error occurred');
+      }
     } finally {
       setLoading(false);
     }
