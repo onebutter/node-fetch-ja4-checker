@@ -1,7 +1,5 @@
 'use server'
 
-import fetch from 'node-fetch';
-
 export async function fetchData(url) {
   try {
     const response = await fetch(url);
