@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { fetchData } from '../actions/fetchData';
+import { fetchData } from './actions/fetchData';
 
 export default function Home() {
   const [url, setUrl] = useState('https://api.example.com/data');
